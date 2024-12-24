@@ -1,6 +1,6 @@
 {
     "meta": {
-      "description": "All your healtchecks at a glance",
+      "description": "All your healtchecks at a glance"
     },
     "errors": {
       "fetch": "There was an error fetching the API",

@@ -15,4 +15,12 @@
     handle {
         reverse_proxy healthchecks:8000
     }
+
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "DENY"
+        Referrer-Policy "no-referrer-when-downgrade"
+        Content-Security-Policy "default-src 'self'"
+    }
 }
