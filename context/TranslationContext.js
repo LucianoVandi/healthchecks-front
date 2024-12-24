@@ -14,17 +14,17 @@ const locales = {
 const TranslationContext = createContext();
 
 // Define the provider
-export const TranslationProvider = ({ children }) => {
-  const [locale, setLocale] = useState("en"); // Default locale
-  const [translations, setTranslations] = useState(locales["en"]);
+export const TranslationProvider = ({ children, locale: initialLocale }) => {
+  console.log('initialLocale', initialLocale);
+  const [locale, setLocale] = useState(initialLocale || "en");
+  const [translations, setTranslations] = useState(locales[locale]);
 
   useEffect(() => {
-    const browserLocale = navigator.language.split("-")[0];
-    const supportedLocale = locales[browserLocale] ? browserLocale : "en";
+    const supportedLocale = locales[locale] ? locale : "en";
     moment.locale(supportedLocale);
     setLocale(supportedLocale);
     setTranslations(locales[supportedLocale]);
-  }, []);
+  }, [locale]);
 
   return (
     <TranslationContext.Provider value={{ locale, translations }}>

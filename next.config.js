@@ -2,12 +2,9 @@ const path = require("path");
 
 module.exports = {
   reactStrictMode: true,
-  webpack: (config) => {
-    config.module.rules.push({
-      test: /\.json$/,
-      include: path.resolve(__dirname, "locales"),
-      type: "javascript/auto",
-    });
-    return config;
+  i18n: {
+    locales: ["en", "it"], // Aggiungi qui i locali supportati
+    defaultLocale: "en", // Imposta il locale predefinito
+    localeDetection: true, // Abilita il rilevamento automatico del locale
   },
 }

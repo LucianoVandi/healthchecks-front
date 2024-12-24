@@ -9,6 +9,19 @@ import { XIcon } from "@heroicons/react/outline";
 
 import { useTranslation } from "../context/TranslationContext";
 
+export async function getServerSideProps({ req }) {
+    // Rileva il locale dal browser (header Accept-Language)
+    const acceptLanguage = req.headers["accept-language"];
+    
+    const detectedLocale = acceptLanguage ? acceptLanguage.split(",")[0].split("-")[0] : "en";
+
+    return {
+        props: {
+            locale: detectedLocale || "en",
+        },
+    };
+}
+
 export default function Home() {
     const { translations } = useTranslation();
 
