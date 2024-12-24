@@ -42,9 +42,6 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./
 COPY --from=builder /app/node_modules ./node_modules
 
-# Remove unnecessary files to reduce image size
-RUN npm prune --production
-
 # Expose the port
 EXPOSE 3000
 
