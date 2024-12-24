@@ -1,0 +1,9 @@
+:80 {
+    handle_path /dashboard* {
+        reverse_proxy healthchecks-front:3000
+    }
+
+    handle {
+        reverse_proxy healthchecks:8000
+    }
+}

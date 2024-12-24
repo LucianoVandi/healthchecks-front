@@ -1,5 +1,6 @@
 export default async function fetcher(...args) {
-    args[0] = "https://healthchecks.io/api" + args[0];
+    const endpoint = process.env.NEXT_PUBLIC_BACKEND_URL;
+    args[0] = endpoint + "/api" + args[0];
 
     args[1] = {
         ...args[1],
@@ -10,5 +11,7 @@ export default async function fetcher(...args) {
     };
 
     const res = await fetch(...args);
-    return res.json();
+    const result = await res.json();
+    console.log(result);
+    return result;
 }

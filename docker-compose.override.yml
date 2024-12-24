@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  healthchecks-front:
+    build:
+      context: .
+      target: development
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_APIKEY: ${NEXT_PUBLIC_APIKEY}
+      NEXT_PUBLIC_BACKEND_URL: ${NEXT_PUBLIC_BACKEND_URL}
