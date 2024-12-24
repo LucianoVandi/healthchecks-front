@@ -1,13 +1,10 @@
 import Head from "next/head";
-
 import useSWR from "swr";
 import fetcher from "../libs/fetch";
-
 import Check from "../components/Check";
-
 import { XIcon } from "@heroicons/react/outline";
-
 import { useTranslation } from "../context/TranslationContext";
+import { useEffect } from "react";
 
 export async function getServerSideProps({ req }) {
     // Rileva il locale dal browser (header Accept-Language)
@@ -65,6 +62,12 @@ export default function Home() {
             checksOrdered[tagsArray].status[check.status]++;
         });
     }
+
+    useEffect(() => {
+        document.title = checksError
+            ? `${checksError} ${translations.errors.multiple}`
+            : "Healthchecks Front";
+    }, [checksError]);
 
     return (
         <div>
