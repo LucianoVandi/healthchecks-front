@@ -48,7 +48,7 @@ services:
     image: caddy:latest
     container_name: healthchecks-caddy
     ports:
-      - "8080:80"
+      - "8087:80"
     volumes:
       - ./.docker/Caddyfile:/etc/caddy/Caddyfile:ro
     depends_on:
