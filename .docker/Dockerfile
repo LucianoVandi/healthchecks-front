@@ -1,42 +1,42 @@
 # Base Stage: Node.js base image
 FROM node:18-alpine AS base
 
-# Declare ARGs for build-time values
+# Dichiarazione degli ARG per i valori di build-time
 ARG NEXT_PUBLIC_APIKEY
 ARG NEXT_PUBLIC_BACKEND_URL
 
-# Set ENV variables from ARG values
+# Imposta le variabili ENV dai valori ARG
 ENV NEXT_PUBLIC_APIKEY=$NEXT_PUBLIC_APIKEY
 ENV NEXT_PUBLIC_BACKEND_URL=$NEXT_PUBLIC_BACKEND_URL
 
-# Set the working directory
+# Imposta la directory di lavoro
 WORKDIR /app
 
-# Copy necessary files
+# Copia i file necessari
 COPY package.json package-lock.json ./
 RUN npm install
 
-# Copy the rest of the project
+# Copia il resto del progetto
 COPY . .
 
-# Set the variable for OpenSSL legacy
+# Imposta la variabile per OpenSSL legacy
 ENV NODE_OPTIONS=--openssl-legacy-provider
 
-# Development Stage
+# Stage per Sviluppo
 FROM base AS development
 ENV NODE_ENV=development
 CMD ["npm", "run", "dev"]
 
-# Build Stage
+# Stage per Build
 FROM base AS builder
 ENV NODE_ENV=production
 RUN npm run build
 
-# Production Runtime Stage (lightweight image)
+# Stage per Runtime in Produzione (immagine leggera)
 FROM node:18-alpine AS production
 WORKDIR /app
 
-# Copy the build and necessary files
+# Copia la build e i file necessari
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./
@@ -45,5 +45,5 @@ COPY --from=builder /app/node_modules ./node_modules
 # Expose the port
 EXPOSE 3000
 
-# Start the application
+# Avvia l'applicazione
 CMD ["npm", "run", "start"]

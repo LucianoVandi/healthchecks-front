@@ -15,9 +15,9 @@ const TranslationContext = createContext();
 
 // Define the provider
 export const TranslationProvider = ({ children, locale: initialLocale }) => {
-  const defaultLocale = locales[initialLocale] ? initialLocale : "en";
-  const [locale, setLocale] = useState(defaultLocale);
-  const [translations, setTranslations] = useState(locales[defaultLocale]);
+  console.log('initialLocale', initialLocale);
+  const [locale, setLocale] = useState(initialLocale || "en");
+  const [translations, setTranslations] = useState(locales[locale]);
 
   useEffect(() => {
     const supportedLocale = locales[locale] ? locale : "en";

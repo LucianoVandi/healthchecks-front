@@ -10,15 +10,8 @@ export default async function fetcher(...args) {
         },
     };
 
-    try {
-        const res = await fetch(...args);
-        if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        const result = await res.json();
-        return result;
-    } catch (error) {
-        console.error("Fetch error:", error);
-        throw error;
-    }
+    const res = await fetch(...args);
+    const result = await res.json();
+    console.log(result);
+    return result;
 }

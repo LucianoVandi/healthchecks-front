@@ -1,6 +1,9 @@
 {
     "meta": {
-      "description": "All your healthchecks at a glance",
+      "title": "Healthchecks Front",
+      "description": "All your healtchecks at a glance",
+      "og_title": "Healthchecks Front",
+      "og_description": "All your healtchecks at a glance"
     },
     "errors": {
       "fetch": "There was an error fetching the API",
@@ -19,3 +22,4 @@
       "all_fine": "all fine 🎉"
     }
   }
+  
