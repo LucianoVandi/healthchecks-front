@@ -1,11 +1,13 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
+import en from "../locales/en.json";
+import it from "../locales/it.json";
 import moment from "moment";
 import "moment/locale/it";
 
 // Defines supported locales
 const locales = {
-  en: require("../locales/en.json"),
-  it: require("../locales/it.json"),
+  en,
+  it,
 };
 
 // Creates the context
