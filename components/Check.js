@@ -3,10 +3,13 @@ import { XIcon } from "@heroicons/react/outline";
 import { PauseIcon } from "@heroicons/react/outline";
 import { ExclamationCircleIcon } from "@heroicons/react/outline";
 import { ClockIcon } from "@heroicons/react/solid";
+import { useTranslation } from "../context/TranslationContext";
 
 import moment from "moment";
 
 const Check = ({ name, status, last_ping, tz, last_duration }) => {
+    const { translations } = useTranslation();
+
     return (
         <div
             className={`text-white bg-gray-800 rounded-lg p-4 flex items-center justify-between relative`}
@@ -22,10 +25,10 @@ const Check = ({ name, status, last_ping, tz, last_duration }) => {
                 }`}
                 title={
                     {
-                        up: "Up",
-                        down: "Down",
-                        paused: "Paused",
-                        grace: "Grace",
+                        up: translations.status.up,
+                        down: translations.status.down,
+                        paused: translations.status.paused,
+                        grace: translations.status.grace,
                     }[status]
                 }
             >

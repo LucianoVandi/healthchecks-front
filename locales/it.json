@@ -1,0 +1,22 @@
+{
+    "meta": {
+      "description": "Tutti i tuoi controlli a colpo d'occhio"
+    },
+    "errors": {
+      "fetch": "Si è verificato un errore durante il recupero dell'API",
+      "single": "errore",
+      "multiple": "errori"
+    },
+    "status": {
+      "up": "Attivo",
+      "down": "Non attivo",
+      "paused": "In pausa",
+      "grace": "In tolleranza"
+    },
+    "checks": {
+      "single": "controllo",
+      "multiple": "controlli",
+      "all_fine": "tutto a posto 🎉"
+    }
+  }
+  

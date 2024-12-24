@@ -1,7 +1,10 @@
 :80 {
 
     # Static files
+    rewrite /_next/* /dashboard{uri}
+    
     handle_path /_next/* {
+        rewrite * /dashboard{uri}
         reverse_proxy healthchecks-front:3000
     }
 

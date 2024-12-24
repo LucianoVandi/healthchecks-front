@@ -7,7 +7,11 @@ import Check from "../components/Check";
 
 import { XIcon } from "@heroicons/react/outline";
 
+import { useTranslation } from "../context/TranslationContext";
+
 export default function Home() {
+    const { translations } = useTranslation();
+
     const { data: checks, error: errorChecks } = useSWR(
         "/v1/checks/",
         fetcher,
@@ -59,7 +63,7 @@ export default function Home() {
                 </title>
                 <meta
                     name="description"
-                    content="All your healtchecks at a glance"
+                    content={translations.meta.description}
                 />
                 <meta
                     property="og:title"
@@ -72,7 +76,7 @@ export default function Home() {
                 <meta property="og:image" content="og_image.png" />
                 <meta
                     property="og:description"
-                    content="All your healtchecks at a glance"
+                    content={translations.meta.description}
                 />
                 <link
                     rel="icon"
@@ -94,7 +98,7 @@ export default function Home() {
                             <XIcon className="w-full text-white" />
                         </div>
                         <h1 className="text-red-500 font-bold text-xl">
-                            There was an error fetching the API
+                            {translations.errors.fetch}
                         </h1>
                     </div>
                 )}
@@ -129,11 +133,11 @@ export default function Home() {
                         >
                             {checksError
                                 ? `${checksError} ${
-                                      checksError == 1 ? "error" : "errors"
+                                      checksError == 1 ? translations.errors.single : translations.errors.multiple
                                   }`
                                 : `${checksTotal} ${
-                                      checksTotal == 1 ? "check" : "checks"
-                                  }, all fine 😌`}
+                                      checksTotal == 1 ? translations.checks.single : translations.checks.multiple
+                                  }, ${translations.checks.all_fine}`}
                         </h1>
                     </div>
                 )}
@@ -150,7 +154,7 @@ export default function Home() {
                                             {checkTag[1].status.up !== 0 && (
                                                 <span
                                                     className="bg-green-900 px-3 py-1 rounded-full ml-2 font-bold text-white"
-                                                    title="Up"
+                                                    title={translations.status.up}
                                                 >
                                                     {checkTag[1].status.up}
                                                 </span>
@@ -158,7 +162,7 @@ export default function Home() {
                                             {checkTag[1].status.down !== 0 && (
                                                 <span
                                                     className="bg-red-900 px-3 py-1 rounded-full ml-2 font-bold text-white"
-                                                    title="Down"
+                                                    title={translations.status.down}
                                                 >
                                                     {checkTag[1].status.down}
                                                 </span>
@@ -167,7 +171,7 @@ export default function Home() {
                                                 0 && (
                                                 <span
                                                     className="bg-gray-800 px-3 py-1 rounded-full ml-2 font-bold text-white"
-                                                    title="Paused"
+                                                    title={translations.status.paused}
                                                 >
                                                     {checkTag[1].status.paused}
                                                 </span>
@@ -175,7 +179,7 @@ export default function Home() {
                                             {checkTag[1].status.grace !== 0 && (
                                                 <span
                                                     className="bg-yellow-800 px-3 py-1 rounded-full ml-2 font-bold text-white"
-                                                    title="Grace"
+                                                    title={translations.status.grace}
                                                 >
                                                     {checkTag[1].status.grace}
                                                 </span>

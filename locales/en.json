@@ -1,0 +1,25 @@
+{
+    "meta": {
+      "title": "Healthchecks Front",
+      "description": "All your healtchecks at a glance",
+      "og_title": "Healthchecks Front",
+      "og_description": "All your healtchecks at a glance"
+    },
+    "errors": {
+      "fetch": "There was an error fetching the API",
+      "single": "error",
+      "multiple": "errors"
+    },
+    "status": {
+      "up": "Up",
+      "down": "Down",
+      "paused": "Paused",
+      "grace": "Grace"
+    },
+    "checks": {
+      "single": "check",
+      "multiple": "checks",
+      "all_fine": "all fine 🎉"
+    }
+  }
+  
