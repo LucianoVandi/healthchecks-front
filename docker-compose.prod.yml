@@ -6,6 +6,7 @@ services:
       args:
         NEXT_PUBLIC_APIKEY: ${NEXT_PUBLIC_APIKEY}
         NEXT_PUBLIC_BACKEND_URL: ${NEXT_PUBLIC_BACKEND_URL}
+    pull_policy: build
     ports:
       - "3000:3000"
     restart: unless-stopped
