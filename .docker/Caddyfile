@@ -21,6 +21,5 @@
         X-Content-Type-Options "nosniff"
         X-Frame-Options "DENY"
         Referrer-Policy "no-referrer-when-downgrade"
-        Content-Security-Policy "default-src 'self'"
     }
 }
