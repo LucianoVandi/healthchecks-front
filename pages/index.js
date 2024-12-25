@@ -6,8 +6,9 @@ import { XIcon } from "@heroicons/react/outline";
 import { useTranslation } from "../context/TranslationContext";
 import { useEffect } from "react";
 
+const pluralize = (count, single, multiple) => count === 1 ? single : multiple
+
 export async function getServerSideProps({ req }) {
-    // Rileva il locale dal browser (header Accept-Language)
     const acceptLanguage = req.headers["accept-language"];
     
     const detectedLocale = acceptLanguage ? acceptLanguage.split(",")[0].split("-")[0] : "en";
@@ -65,7 +66,7 @@ export default function Home() {
 
     useEffect(() => {
         document.title = checksError
-            ? `${checksError} ${translations.errors.multiple}`
+            ? `${checksError} ${pluralize(checksError, translations.issue.single, translations.issue.multiple)}`
             : "Healthchecks Front";
     }, [checksError]);
 
@@ -114,14 +115,14 @@ export default function Home() {
                             <XIcon className="w-full text-white" />
                         </div>
                         <h1 className="text-red-500 font-bold text-xl">
-                            {translations.errors.fetch}
+                            {translations.fetch.error}
                         </h1>
                     </div>
                 )}
 
                 {checks && (
-                    <div className="my-5">
-                        <div className="w-36 h-36 relative mx-auto my-1s">
+                    <div className="my-5 flex flex-row items-center justify-center">
+                        <div className="w-24 h-24 relative my-1s">
                             <div
                                 className={`rounded-full absolute inset-6 bg-gradient-to-b ${
                                     checksError
@@ -148,12 +149,11 @@ export default function Home() {
                             } font-bold text-center text-xl`}
                         >
                             {checksError
-                                ? `${checksError} ${
-                                      checksError == 1 ? translations.errors.single : translations.errors.multiple
-                                  }`
+                                ? `${checksError} ${pluralize(checksError, translations.issue.single, translations.issue.multiple)}`
                                 : `${checksTotal} ${
-                                      checksTotal == 1 ? translations.checks.single : translations.checks.multiple
-                                  }, ${translations.checks.all_fine}`}
+                                        pluralize(checksTotal, translations.checks.single, translations.checks.multiple)}, 
+                                        ${translations.checks.all_fine}`
+                                    }
                         </h1>
                     </div>
                 )}

@@ -2,10 +2,12 @@
     "meta": {
       "description": "All your healtchecks at a glance"
     },
-    "errors": {
-      "fetch": "There was an error fetching the API",
-      "single": "error",
-      "multiple": "errors"
+    "fetch": {
+      "error": "There was an error fetching the API"
+    },
+    "issue": {
+      "single": "Issue",
+      "multiple": "Issues"
     },
     "status": {
       "up": "Up",
@@ -14,8 +16,8 @@
       "grace": "Grace"
     },
     "checks": {
-      "single": "check",
-      "multiple": "checks",
+      "single": "Check",
+      "multiple": "Checks",
       "all_fine": "all fine 🎉"
     }
   }
