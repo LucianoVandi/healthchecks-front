@@ -26,6 +26,8 @@ services:
       - RP_ID= #optional
       - SECRET_KEY= #optional
       - SITE_LOGO_URL= #optional
+      - REGISTRATION_OPEN=False
+      - DEBUG=${DEBUG}
     volumes:
       - healthchecks_data:/config
     ports:
